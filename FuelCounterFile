@@ -21,7 +21,6 @@ def displaying_validation_of_style():
 
 
 #Beginning
-
 question = ""
 car_distance = 0
 name = input("What's your name? ")
