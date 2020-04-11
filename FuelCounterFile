@@ -21,25 +21,30 @@ def displaying_validation_of_style():
 
 
 #Beginning
+
 question = ""
 car_distance = 0
 name = input("What's your name? ")
 print(f'Hey {name}, welcome to my Fuel Counter! Have fun and calculate.')
 while question != "yes":
+
 # input_from_user
     current_distance = input('Bieżący stan licznika (km) ')
     current_price = input('Cena za litr ')
     current_price = current_price.replace('.','').replace(',','.')
     current_liters = input('Ile litrów? ')
+    
 #calculation
     distance_driven = int(current_distance) - int(car_distance)
     total_cost = float(current_price) * float(current_liters)
     fuel_consumption = round((float(current_liters) / float(distance_driven) * 100), 2)
     cost_100km = round(float(fuel_consumption * float(current_price)), 2)
     car_distance += int(current_distance)
+    
 #Executing fuctions
     displaying_calculated()
     displaying_validation_of_style()
+    
 #loop question
     question = input("Are we finished? Yes or No? ").lower()
     if question == "yes":
