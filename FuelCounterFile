@@ -1,0 +1,52 @@
+#Defined functions
+def displaying_calculated():
+    dist=f'Przejechałeś: {distance_driven} km'
+    print(dist)
+    trip_cost = f'Kosztowało Cię to: {total_cost} zł'
+    print(trip_cost)
+    liters_per_100km= f'Spalanie na 100km wyniosło: {fuel_consumption} l/100 km'
+    print(liters_per_100km)
+    print(f'Przebieg Twojego samochodu wynosi: {car_distance}km')
+
+
+def displaying_validation_of_style():
+    if fuel_consumption > 10:
+        print('Za ciężka noga!')
+    if fuel_consumption < 10 and fuel_consumption > 5:
+        print('Spalanie w normie!')
+    if fuel_consumption < 5:
+        print('...Bardzo mało !')
+        cost_of_100km = f'Czyli za 100 km zapłaciłeś: {cost_100km} zł'
+        print(cost_of_100km)
+
+
+#Beginning
+question = ""
+car_distance = 0
+name = input("What's your name? ")
+print(f'Hey {name}, welcome to my Fuel Counter! Have fun and calculate.')
+while question != "yes":
+# input_from_user
+    current_distance = input('Bieżący stan licznika (km) ')
+    current_price = input('Cena za litr ')
+    current_price = current_price.replace('.','').replace(',','.')
+    current_liters = input('Ile litrów? ')
+#calculation
+    distance_driven = int(current_distance) - int(car_distance)
+    total_cost = float(current_price) * float(current_liters)
+    fuel_consumption = round((float(current_liters) / float(distance_driven) * 100), 2)
+    cost_100km = round(float(fuel_consumption * float(current_price)), 2)
+    car_distance += int(current_distance)
+#Executing fuctions
+    displaying_calculated()
+    displaying_validation_of_style()
+#loop question
+    question = input("Are we finished? Yes or No? ").lower()
+    if question == "yes":
+        print("Thanks for using it! ")
+        break
+    if question == "no":
+        print("Ok, let's go once again ")
+    else:
+        print("You were supposed to say Yes or No :P")
+        question = input("Are we finished? Yes or No? ").lower()
