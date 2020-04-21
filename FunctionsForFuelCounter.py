@@ -2,7 +2,7 @@ import tkinter as tk
 from datetime import datetime
 
 
-def displaying_Tkinter(distance_driven, total_cost, fuel_consumption, car_distance):
+def displaying_Tkinter(car_distance, distance_driven, total_cost, fuel_consumption):
     def closing():
         root.destroy()
     root = tk.Tk()
