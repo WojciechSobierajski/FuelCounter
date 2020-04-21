@@ -29,7 +29,7 @@ while question != "yes":
 #Executing fuctions
     FunctionsForFuelCounter.displaying_calculated(distance_driven, total_cost, cost_100km, fuel_consumption)
     FunctionsForFuelCounter.displaying_validation_of_style(fuel_consumption)
-    FunctionsForFuelCounter.displaying_Tkinter(distance_driven, total_cost, fuel_consumption, car_distance)
+    FunctionsForFuelCounter.displaying_Tkinter(car_distance, distance_driven, total_cost, fuel_consumption)
     FunctionsForFuelCounter.filling_excel(sheet, wb, name, current_distance, current_price, distance_driven, total_cost, current_liters, fuel_consumption, cost_100km)
 #loop question
     question = input("Are we finished? Yes or No? ").lower()
