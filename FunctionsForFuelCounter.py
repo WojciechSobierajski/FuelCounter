@@ -2,7 +2,38 @@ import tkinter as tk
 from datetime import datetime
 
 
-def displaying_Tkinter(car_distance, distance_driven, total_cost, fuel_consumption):
+def displaying_calculated(distance_driven, total_cost, cost_100km, fuel_consumption):
+    dist=f"You've driven: {distance_driven} km"
+    print(dist)
+    trip_cost = f'It cost you: {total_cost} zł'
+    print(trip_cost)
+    cost_of_100km = f'100 km cost you: {cost_100km} zł'
+    print(cost_of_100km)
+    liters_per_100km= f'Fuel consumption is: {fuel_consumption} l/100 km'
+    print(liters_per_100km)
+
+
+def displaying_validation_tk(fuel_consumption):
+    if fuel_consumption > 10:
+        score_tk = 'Too fast!'
+    if fuel_consumption < 10 and fuel_consumption > 5:
+        score_tk = 'consumption is good!'
+    if fuel_consumption < 5:
+        score_tk = 'Wow, very low !'
+    return score_tk
+
+
+def displaying_validation_of_style(fuel_consumption):
+    if fuel_consumption > 10:
+        score = 'Too fast!'
+    if fuel_consumption < 10 and fuel_consumption > 5:
+        score = 'Fuel consumption is good!'
+    if fuel_consumption < 5:
+        score = 'Wow, very low !'
+    print(score)
+
+
+def displaying_Tkinter(car_distance, distance_driven, total_cost, fuel_consumption, score_tk):
     def closing():
         root.destroy()
     root = tk.Tk()
@@ -16,9 +47,9 @@ def displaying_Tkinter(car_distance, distance_driven, total_cost, fuel_consumpti
     label.place(relx=0.1, rely=0.2)
     label = tk.Label(frame, text=(f'Fuel consumption is: {fuel_consumption} l/100km'))
     label.place(relx=0.1, rely=0.3)
-    #label = tk.Label(frame, text=(score))
-    #label.place(relx=0.1, rely=0.4)
-    label = tk.Label(frame, text=(f'Overall car distance: {car_distance} km'))
+    label = tk.Label(frame, text=(f'Therefore {score_tk}'))
+    label.place(relx=0.1, rely=0.4)
+    label = tk.Label(frame, text=(f'Overal car distance: {car_distance} km'))
     label.place(relx=0.1, rely=0.5)
     button = tk.Button(root, text='Click to continue', command=closing)
     button.pack()
@@ -43,24 +74,3 @@ def filling_excel(sheet, wb, name, current_distance, current_price, distance_dri
     cell = sheet.cell(sheet.max_row, 8)
     cell.value = cost_100km
     wb.save(f'{name}.xlsx')
-
-
-def displaying_calculated(distance_driven, total_cost, cost_100km, fuel_consumption):
-    dist=f"You've driven: {distance_driven} km"
-    print(dist)
-    trip_cost = f'It cost you: {total_cost} zł'
-    print(trip_cost)
-    cost_of_100km = f'100 km cost you: {cost_100km} zł'
-    print(cost_of_100km)
-    liters_per_100km= f'Fuel consumption is: {fuel_consumption} l/100 km'
-    print(liters_per_100km)
-
-
-def displaying_validation_of_style(fuel_consumption):
-    if fuel_consumption > 10:
-        score = 'Too fast!'
-    if fuel_consumption < 10 and fuel_consumption > 5:
-        score = 'Fuel consumption is good!'
-    if fuel_consumption < 5:
-        score = 'Wow, very low !'
-    print(score)
