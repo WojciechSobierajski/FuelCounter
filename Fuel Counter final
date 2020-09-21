@@ -8,7 +8,7 @@ import os
 question = ""
 
 
-#1st window
+#1st window - asks for a user name
 def closing():
     root.destroy()
 
@@ -24,12 +24,12 @@ tk.Button(root, text='Next', command=closing, font=25).grid(column=1, row=3)
 root.mainloop()
 
 
-
+#This part check if the file already exists
 name = nameget.get()
 def does(filePathAndName):
     return os.path.exists(filePathAndName)
 
-
+#If exists, file opens, if not - creates a new file based on the template xlsx file.
 if does(f"C:/WSFuelCounter/{name}.xlsx"):
     wb = xl.load_workbook(f'{name}.xlsx')
     sheet = wb['Calculation']
@@ -45,7 +45,7 @@ else:
 
 
 print(f'Hey {name}, welcome to my Fuel Counter! Have fun and calculate.')
-
+#Looping the function and gathering data from user
 while question != 'yes':
     def closing():
         root.destroy()
@@ -67,7 +67,7 @@ while question != 'yes':
     tk.Entry(root, font=25, width=4, textvariable=current_price).grid(sticky='w', column=1, row=2, padx=10, pady=10)
     button = tk.Button(root, font=25, fg='red', text='Click to continue', command=closing).grid(column=5, row=4)
     root.mainloop()
-    # calculation
+    # calculation (in a first step, converts any inaccuracy with formatting
     current_price = current_price.get()
     current_price = current_price.replace(',', '.')
     current_liters = current_liters.get()
@@ -79,7 +79,7 @@ while question != 'yes':
     cost_100km = round(float(fuel_consumption * float(current_price)), 2)
     car_distance = int(car_distance) + int(distance_driven)
     score_tk = FunctionsForFuelCounter.displaying_validation_tk(fuel_consumption)
-    # Executing fuctions
+    # Executing fuctions (creates the data base and displays the output)
     FunctionsForFuelCounter.filling_excel(sheet, wb, name, current_distance.get(), current_price,
                                               distance_driven, total_cost, current_liters, fuel_consumption,
                                               cost_100km)
